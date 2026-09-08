@@ -39,7 +39,7 @@
 
             <!-- PANEL DERECHO (FORMULARIO) -->
             <div class="auth-form-container">
-                <a href="../../../public/index.html" class="btn-back">
+                <a href="../../../public/index.php" class="btn-back">
                     <i class="fa-solid fa-arrow-left"></i> Volver al inicio
                 </a>
 
@@ -108,7 +108,7 @@
                     </button>
 
 
-                    <p class="redirect-text">¿Ya tienes cuenta? <a href="login.php">Inicia Sesión</a></p>
+                    <p class="redirect-text">¿Ya tienes cuenta? <a href="../../../app/views/public/login.php">Inicia Sesión</a></p>
                 </form>
             </div>
         </div>

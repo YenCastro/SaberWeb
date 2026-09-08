@@ -1,3 +1,4 @@
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/Proyecto SENA SaberWeb/app/config/config.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -6,17 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SaberWeb - Prepárate para el ICFES Saber 11°</title>
     <link rel="stylesheet" href="assets/css/public/inicio.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"  rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
 
     <header class="navbar">
         <div class="logo">
-            <a href="index.html">
+            <a href="index.php">
                 <img src="assets/img/logo/logo.png" alt="SaberWeb Logo" class="logo-img">
             </a>
         </div>
@@ -26,8 +28,8 @@
             <a href="resultados.php">Resultados</a>
         </nav>
         <div class="auth-buttons">
-            <a href="login.php" class="btn-outline">Iniciar Sesión</a>
-            <a href="../app/views/public/registro.html" class="btn-primary">Regístrate</a>
+            <a href="../app/views/public/login.php" class="btn-outline">Iniciar Sesión</a>
+            <a href="../app/views/public/registro.php" class="btn-primary">Regístrate</a>
         </div>
     </header>
 
@@ -147,60 +149,7 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-    <div class="footer-content">
-        <!-- Columna 1: Marca -->
-        <div class="footer-col brand-col">
-            <img src="assets/img/logo/logo.png" alt="SaberWeb Logo" class="logo-img">
-            <p>Plataforma inteligente para prepararse en el examen ICFES Saber 11°.</p>
-        </div>
-
-        <!-- Columna 2: Redes Sociales -->
-        <div class="footer-col">
-            <h4>Redes sociales</h4>
-            <ul>
-                <li><a href="#"><i class="fa-brands fa-facebook-f"></i> Facebook</a></li>
-                <li><a href="#"><i class="fa-brands fa-x-twitter"></i> X</a></li>
-                <li><a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
-            </ul>
-        </div>
-
-        <!-- Columna 3: Enlaces -->
-        <div class="footer-col">
-            <h4>Enlaces</h4>
-            <ul>
-                <li><a href="index.php">Inicio</a></li>
-                <li><a href="simulacros.php">Simulacros</a></li>
-                <li><a href="resultados.php">Resultados</a></li>
-            </ul>
-        </div>
-
-        <!-- Columna 4: Legal -->
-        <div class="footer-col">
-            <h4>Legal</h4>
-            <ul>
-                <li><a href="#">Términos y condiciones</a></li>
-                <li><a href="#">Política de privacidad</a></li>
-                <li><a href="#">Política de cookies</a></li>
-            </ul>
-        </div>
-
-        <!-- Columna 5: CTA / Tarjeta de Registro -->
-        <div class="footer-col CTA-col">
-            <h4>¿Listo para empezar?</h4>
-            <p>Regístrate gratis y comienza tu preparación hoy mismo.</p>
-            <a href="registro.html" class="btn-footer-cta">Regístrate ahora</a>
-        </div>
-    </div>
-
-    <!-- Footer Bottom -->
-    <div class="footer-bottom">
-        <p>&copy; 2026 SaberWeb. Todos los derechos reservados.</p>
-    </div>
-</footer>
-
     <script src="script.js"></script>
+    <?php include ROOT_PATH . 'app/views/layouts/footer.php'; ?>
 </body>
-
 </html>
