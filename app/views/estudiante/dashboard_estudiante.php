@@ -1,38 +1,53 @@
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/Proyecto SENA SaberWeb/app/config/config.php'; ?>
+<?php
+session_start();
+
+// 1. Validar que la sesión esté activa y sea un estudiante
+if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_rol'] !== 'Estudiante') {
+    header("Location: ../public/login.php?error=acceso_requerido");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SaberWeb - Prepárate para el ICFES Saber 11°</title>
-    <link rel="stylesheet" href="assets/css/public/inicio.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
+    <title>SaberWeb - Panel de Estudiante</title>
+    <!-- Rutas corregidas para acceder a los assets desde app/views/estudiante/ -->
+    <link rel="stylesheet" href="../../../public/assets/css/public/inicio.css">
+    <link rel="stylesheet" href="../../../public/assets/css/footer.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"  rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
     <header class="navbar">
         <div class="logo">
-            <a href="index.php">
-                <img src="assets/img/logo/logo.png" alt="SaberWeb Logo" class="logo-img">
+            <a href="dashboard_estudiante.php">
+                <img src="../../../public/assets/img/logo/logo.png" alt="SaberWeb Logo" class="logo-img">
             </a>
         </div>
+        
         <nav class="nav-links">
-            <a href="index.php" class="active">Inicio</a>
+            <a href="dashboard_estudiante.php" class="active">Inicio</a>
             <a href="simulacros.php">Simulacros</a>
-            <a href="resultados.php">Resultados</a>
+            <a href="resultado.php">Resultados</a>
+            <a href="perfil.php">Mi Perfil</a>
         </nav>
+        
         <div class="auth-buttons">
-            <a href="../app/views/public/login.php" class="btn-outline">Iniciar Sesión</a>
-            <a href="../app/views/public/registro.php" class="btn-primary">Regístrate</a>
+            <!-- Muestra el nombre cargado desde la sesión -->
+            <span style="font-weight: 600; color: #0B2D4D; margin-right: 10px;">
+                Hola, <?php echo htmlspecialchars($_SESSION['usuario_nombre'] ?? 'Estudiante'); ?>
+            </span>
+            <a href="../../controllers/AuthController.php?action=logout" class="btn-outline">Cerrar Sesión</a>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
+ <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-content">
             <span class="badge">Simulacros ICFES Saber 11° y UNAL</span>
@@ -76,7 +91,7 @@
 
         <div class="hero-image-container">
             <div class="blue-shape"></div>
-            <img src="assets/img/fondos/Home.png" alt="Estudiante SaberWeb" class="hero-img">
+            <img src="../../../public/assets/img/fondos/Home.png" alt="Estudiante SaberWeb" class="hero-img">
         </div>
     </section>
 
