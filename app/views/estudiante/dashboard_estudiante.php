@@ -172,6 +172,6 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_rol'] !== 'Estudiante'
     </section>
 
     <script src="script.js"></script>
-    <?php include ROOT_PATH . 'app/views/layouts/footer.php'; ?>
+    <?php include ROOT_PATH . '../app/views/layouts/footer.php'; ?>
 </body>
 </html>

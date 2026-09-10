@@ -1,0 +1,256 @@
+/* public/assets/css/estudiante/perfil.css */
+
+:root {
+    --azul-principal: #145DA0;
+    --azul-oscuro: #0B2D4D;
+    --azul-claro: #E8F3FC;
+    --blanco: #FFFFFF;
+    --negro-suave: #1F2937;
+    --gris-borde: #E5E7EB;
+    --gris-texto: #6B7280;
+
+    --exito: #15803D;
+    --exito-fondo: #F0FDF4;
+    --exito-borde: #BBF7D0;
+
+    --peligro: #DC2626;
+    --peligro-fondo: #FEF2F2;
+    --peligro-borde: #FECACA;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'DM Sans', sans-serif;
+}
+
+body {
+    background-color: #F8FAFC;
+    color: var(--negro-suave);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Contenedor Principal */
+.profile-main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 56px 20px;
+}
+
+.profile-card {
+    background: var(--blanco);
+    border-radius: 14px;
+    box-shadow: 0 10px 25px -5px rgba(11, 45, 77, 0.08);
+    width: 100%;
+    max-width: 520px;
+    border: 1px solid var(--gris-borde);
+    overflow: hidden;
+}
+
+/* Cabecera de la tarjeta con avatar */
+.profile-header {
+    background: linear-gradient(135deg, var(--azul-oscuro), var(--azul-principal));
+    padding: 32px;
+    text-align: center;
+    color: var(--blanco);
+}
+
+.profile-avatar {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: var(--azul-claro);
+    color: var(--azul-oscuro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.profile-header h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.profile-subtitle {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 4px;
+}
+
+/* Cuerpo de la tarjeta */
+.profile-body {
+    padding: 32px;
+}
+
+.section-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--azul-principal);
+    margin-bottom: 16px;
+}
+
+/* Alertas de Notificación */
+.alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.alert-success {
+    background-color: var(--exito-fondo);
+    color: var(--exito);
+    border: 1px solid var(--exito-borde);
+}
+
+.alert-error {
+    background-color: var(--peligro-fondo);
+    color: var(--peligro);
+    border: 1px solid var(--peligro-borde);
+}
+
+/* Estructura del Formulario */
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--azul-oscuro);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--gris-borde);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: var(--negro-suave);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: var(--blanco);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--azul-principal);
+    box-shadow: 0 0 0 3px rgba(20, 93, 160, 0.15);
+}
+
+.form-group .help-text {
+    font-size: 0.8rem;
+    color: var(--gris-texto);
+}
+
+/* Botón principal */
+.btn-submit {
+    margin-top: 6px;
+    padding: 13px 20px;
+    background-color: var(--azul-principal);
+    color: var(--blanco);
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    width: 100%;
+}
+
+.btn-submit:hover {
+    background-color: var(--azul-oscuro);
+}
+
+.btn-submit:active {
+    transform: scale(0.99);
+}
+
+.btn-submit:focus-visible {
+    outline: 3px solid rgba(20, 93, 160, 0.35);
+    outline-offset: 2px;
+}
+
+/* Zona de peligro - Eliminar Cuenta (CRUD Delete) */
+.danger-zone {
+    margin-top: 32px;
+    padding: 18px;
+    border-radius: 10px;
+    background-color: var(--peligro-fondo);
+    border: 1px solid var(--peligro-borde);
+}
+
+.danger-zone-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--peligro);
+    margin-bottom: 4px;
+}
+
+.danger-zone-text {
+    font-size: 0.825rem;
+    color: var(--gris-texto);
+    margin-bottom: 14px;
+}
+
+.btn-delete {
+    width: 100%;
+    padding: 11px 16px;
+    background: var(--blanco);
+    border: 1.5px solid var(--peligro);
+    color: var(--peligro);
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-delete:hover {
+    background-color: var(--peligro);
+    color: var(--blanco);
+}
+
+.btn-delete:focus-visible {
+    outline: 3px solid rgba(220, 38, 38, 0.35);
+    outline-offset: 2px;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    .btn-submit,
+    .btn-delete {
+        transition: none;
+    }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .profile-main {
+        padding: 32px 14px;
+    }
+
+    .profile-header,
+    .profile-body {
+        padding: 24px;
+    }
+}

@@ -74,7 +74,7 @@ class AuthController {
         header("Location: ../views/public/login.php?mensaje=sesion_cerrada");
         exit();
     }
-} // ← Cierre correcto de la clase AuthController
+} 
 
 // Enrutador para ejecutar la acción enviada por URL (?action=...)
 if (isset($_GET['action'])) {
