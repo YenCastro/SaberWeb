@@ -1,4 +1,3 @@
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/Proyecto SENA SaberWeb/app/config/config.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -11,41 +10,40 @@
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"  rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
 
     <header class="navbar">
-    <div class="logo">
-        <a href="index.html">
-            <img src="assets/img/logo/logo.png" alt="SaberWeb Logo" class="logo-img">
-        </a>
-    </div>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/img/logo/logo.png" alt="SaberWeb Logo" class="logo-img">
+            </a>
+        </div>
 
-    <!-- NAVBAR PÚBLICO (Versión Estática) -->
-    <nav class="nav-links">
-        <a href="index.html" class="active">Inicio</a>
-        <a href="#simulacros">Simulacros</a>
-        <a href="#resultados">Resultados</a>
-    </nav>
-    <div class="auth-buttons">
-        <a href="#" class="btn-outline">Iniciar Sesión</a>
-        <a href="#" class="btn-primary">Regístrate</a>
-    </div>
-</header>
+        <!-- NAVBAR PÚBLICO -->
+        <nav class="nav-links">
+            <a href="index.html" class="active">Inicio</a>
+            <a href="#simulacros">Simulacros</a>
+            <a href="#como-funciona">¿Cómo funciona?</a>
+        </nav>
+        <div class="auth-buttons">
+            <a href="#" class="btn-outline">Iniciar Sesión</a>
+            <a href="#" class="btn-primary">Regístrate</a>
+        </div>
+    </header>
 
     <!-- HERO SECTION INIT -->
     <section class="hero">
         <div class="hero-content">
             <span class="badge">Simulacros ICFES Saber 11° y UNAL</span>
             <h1>Prepárate hoy, alcanza tu <span class="highlight-blue">mejor versión</span> mañana.</h1>
-            <p>Practica con simulacros reales, refuerza tus conocimientos y llega con confianza al examen Saber 11° y
-                UNAL.</p>
+            <p>Practica con simulacros reales, refuerza tus conocimientos y llega con confianza al examen Saber 11° y UNAL.</p>
 
             <div class="hero-actions">
-                <a href="simulacros.php" class="btn-primary-icon">
+                <a href="#simulacros" class="btn-primary-icon">
                     Comenzar ahora <i class="fa-solid fa-arrow-right"></i>
                 </a>
                 <a href="#como-funciona" class="btn-outline-icon">
@@ -85,7 +83,7 @@
     </section>
 
     <!-- CARDS FEATURES -->
-    <section class="features-section">
+    <section class="features-section" id="simulacros">
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon"><i class="fa-solid fa-globe"></i></div>
@@ -116,7 +114,7 @@
         <div class="steps-container">
             <div class="step-item">
                 <div class="step-icon-wrapper">
-                    <a href="../app/views/public/registro.php" class="step-icon">
+                    <a href="#" class="step-icon">
                         <i class="fa-solid fa-user-plus"></i>
                     </a>
                     <span class="step-number">1</span>
@@ -127,7 +125,7 @@
             <div class="step-line"></div>
             <div class="step-item">
                 <div class="step-icon-wrapper">
-                    <a href="simulacros.php" class="step-icon">
+                    <a href="#" class="step-icon">
                         <i class="fa-solid fa-copy"></i>
                     </a>
                     <span class="step-number">2</span>
@@ -149,7 +147,7 @@
             <div class="step-line"></div>
             <div class="step-item">
                 <div class="step-icon-wrapper">
-                    <a href="resultados.php" class="step-icon">
+                    <a href="#" class="step-icon">
                         <i class="fa-solid fa-chart-line"></i>
                     </a>
                     <span class="step-number">4</span>
@@ -160,7 +158,53 @@
         </div>
     </section>
 
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col brand-col">
+                <img src="assets/img/logo/logo.png" alt="SaberWeb Logo" class="logo-img">
+                <p>Plataforma inteligente para prepararse en el examen ICFES Saber 11°.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Redes sociales</h4>
+                <ul>
+                    <li><a href="#"><i class="fa-brands fa-facebook-f"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fa-brands fa-x-twitter"></i> X</a></li>
+                    <li><a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="#simulacros">Simulacros</a></li>
+                    <li><a href="#como-funciona">¿Cómo funciona?</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Términos y condiciones</a></li>
+                    <li><a href="#">Política de privacidad</a></li>
+                    <li><a href="#">Política de cookies</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col CTA-col">
+                <h4>¿Listo para empezar?</h4>
+                <p>Regístrate gratis y comienza tu preparación hoy mismo.</p>
+                <a href="#" class="btn-footer-cta">Regístrate ahora</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 SaberWeb. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
-    <?php include ROOT_PATH . 'app/views/layouts/footer.php'; ?>
 </body>
 </html>
