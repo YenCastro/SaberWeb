@@ -20,7 +20,7 @@
     <!-- llamar el navbar -->
     <?php include ROOT_PATH . 'app/views/layouts/navbar.php'; ?>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION INIT -->
     <section class="hero">
         <div class="hero-content">
             <span class="badge">Simulacros ICFES Saber 11° y UNAL</span>
