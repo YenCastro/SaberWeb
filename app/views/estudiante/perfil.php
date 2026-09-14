@@ -6,15 +6,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_rol'] !== 'Estudiante') {
-    header("Location: ../public/login.php?error=acceso_requerido");
-    exit();
-}
-
-// BASE_URL: ruta fija desde la raíz del sitio.
-if (!defined('BASE_URL')) {
-    define('BASE_URL', '/Proyecto SENA SaberWeb');
-}
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Proyecto SENA SaberWeb/app/config/config.php';
+requerirSesion('Estudiante');
 
 $nombreActual = $cuenta['nombre_completo'] ?? ($_SESSION['usuario_nombre'] ?? 'Estudiante');
 $inicial = mb_strtoupper(mb_substr(trim($nombreActual), 0, 1));
@@ -30,31 +23,14 @@ $inicial = mb_strtoupper(mb_substr(trim($nombreActual), 0, 1));
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/assets/css/public/inicio.css">
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/assets/css/estudiante/perfil.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/assets/css/navbar.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/assets/css/footer.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/assets/css/estudiante/perfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
-    <!-- Header / Navbar Consistente -->
-    <header class="navbar">
-        <div class="logo">
-            <a href="<?php echo BASE_URL; ?>/app/views/estudiante/dashboard_estudiante.php">
-                <img src="<?php echo BASE_URL; ?>/public/assets/img/logo/logo.png" alt="SaberWeb Logo" class="logo-img">
-            </a>
-        </div>
-        <nav class="nav-links">
-            <a href="<?php echo BASE_URL; ?>/app/views/estudiante/dashboard_estudiante.php">Inicio</a>
-            <a href="<?php echo BASE_URL; ?>/app/views/estudiante/simulacros.php">Simulacros</a>
-            <a href="<?php echo BASE_URL; ?>/app/views/estudiante/resultado.php">Resultados</a>
-            <a href="<?php echo BASE_URL; ?>/app/controllers/EstudianteController.php?action=verPerfil" class="active">Mi Perfil</a>
-        </nav>
-        <div class="auth-buttons">
-            <span style="font-weight: 600; color: #0B2D4D; margin-right: 10px;">
-                Hola, <?php echo htmlspecialchars($_SESSION['usuario_nombre'] ?? 'Estudiante'); ?>
-            </span>
-            <a href="<?php echo BASE_URL; ?>/app/controllers/AuthController.php?action=logout" class="btn-outline">Cerrar Sesión</a>
-        </div>
-    </header>
+    <?php include ROOT_PATH . 'app/views/layouts/navbar.php'; ?>
 
     <!-- Contenido Principal -->
     <main class="profile-main">
@@ -85,7 +61,7 @@ $inicial = mb_strtoupper(mb_substr(trim($nombreActual), 0, 1));
                 <p class="section-label">Datos de la cuenta</p>
 
                 <!-- Formulario de Actualización (CRUD: Update) -->
-                <form action="<?php echo BASE_URL; ?>/app/controllers/EstudianteController.php?action=actualizarPerfil" method="POST" class="profile-form">
+                <form action="<?php echo BASE_URL; ?>app/controllers/EstudianteController.php?action=actualizarPerfil" method="POST" class="profile-form">
 
                     <div class="form-group">
                         <label for="nombre_completo">Nombre completo</label>
@@ -110,8 +86,8 @@ $inicial = mb_strtoupper(mb_substr(trim($nombreActual), 0, 1));
                 <div class="danger-zone">
                     <p class="danger-zone-title">Eliminar cuenta</p>
                     <p class="danger-zone-text">Se borrará tu cuenta y toda tu información de forma permanente. Esta acción no se puede deshacer.</p>
-                    <form action="<?php echo BASE_URL; ?>/app/controllers/EstudianteController.php?action=eliminarPerfil" method="POST"
-                          onsubmit="return confirm('¿Seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.');">
+                    <form action="<?php echo BASE_URL; ?>app/controllers/EstudianteController.php?action=eliminarPerfil" method="POST"
+                        onsubmit="return confirm('¿Seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer.');">
                         <button type="submit" class="btn-delete">Eliminar mi cuenta definitivamente</button>
                     </form>
                 </div>
@@ -119,6 +95,11 @@ $inicial = mb_strtoupper(mb_substr(trim($nombreActual), 0, 1));
             </div>
         </div>
     </main>
+    <?php include ROOT_PATH . 'app/views/layouts/footer.php'; ?>
+
+    <script>
+        window.addEventListener('unload', function () {});
+    </script>
 
 </body>
 </html>

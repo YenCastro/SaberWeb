@@ -1,12 +1,9 @@
 <?php
 session_start();
-
-// 1. Validar que la sesión esté activa y sea un estudiante
-if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_rol'] !== 'Estudiante') {
-    header("Location: ../public/login.php?error=acceso_requerido");
-    exit();
-}
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Proyecto SENA SaberWeb/app/config/config.php';
+requerirSesion('Estudiante');
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,8 +11,8 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_rol'] !== 'Estudiante'
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SaberWeb - Panel de Estudiante</title>
-    <!-- Rutas corregidas para acceder a los assets desde app/views/estudiante/ -->
     <link rel="stylesheet" href="../../../public/assets/css/public/inicio.css">
+    <link rel="stylesheet" href="../../../public/assets/css/navbar.css">
     <link rel="stylesheet" href="../../../public/assets/css/footer.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,30 +21,9 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_rol'] !== 'Estudiante'
 </head>
 
 <body>
-    <header class="navbar">
-        <div class="logo">
-            <a href="dashboard_estudiante.php">
-                <img src="../../../public/assets/img/logo/logo.png" alt="SaberWeb Logo" class="logo-img">
-            </a>
-        </div>
-        
-        <nav class="nav-links">
-            <a href="dashboard_estudiante.php" class="active">Inicio</a>
-            <a href="simulacros.php">Simulacros</a>
-            <a href="resultado.php">Resultados</a>
-            <a href="perfil.php">Mi Perfil</a>
-        </nav>
-        
-        <div class="auth-buttons">
-            <!-- Muestra el nombre cargado desde la sesión -->
-            <span style="font-weight: 600; color: #0B2D4D; margin-right: 10px;">
-                Hola, <?php echo htmlspecialchars($_SESSION['usuario_nombre'] ?? 'Estudiante'); ?>
-            </span>
-            <a href="../../controllers/AuthController.php?action=logout" class="btn-outline">Cerrar Sesión</a>
-        </div>
-    </header>
+    <?php include ROOT_PATH . 'app/views/layouts/navbar.php'; ?>
 
- <!-- HERO SECTION -->
+    <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-content">
             <span class="badge">Simulacros ICFES Saber 11° y UNAL</span>
@@ -172,6 +148,10 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_rol'] !== 'Estudiante'
     </section>
 
     <script src="script.js"></script>
-    <?php include ROOT_PATH . '../app/views/layouts/footer.php'; ?>
+    <?php include ROOT_PATH . 'app/views/layouts/footer.php'; ?>
+
+    <script>
+        window.addEventListener('unload', function () {});
+    </script>
 </body>
 </html>

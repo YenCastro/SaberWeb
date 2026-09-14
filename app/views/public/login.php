@@ -47,16 +47,17 @@
 
                 <!-- MENSAJES DE ALERTA PROVENIENTES DEL CONTROLADOR -->
                 <?php if (isset($_GET['mensaje']) && $_GET['mensaje'] === 'registro_exitoso'): ?>
-                    <div style="padding: 10px; margin-bottom: 15px; border-radius: 8px; text-align: center; font-size: 0.85rem; background-color: #d1e7dd; color: #0f5132;">
+                    <div class="alert alert-success">
                         ¡Registro completado! Ahora puedes iniciar sesión.
                     </div>
                 <?php endif; ?>
 
                 <?php if (isset($_GET['error'])): ?>
-                    <div style="padding: 10px; margin-bottom: 15px; border-radius: 8px; text-align: center; font-size: 0.85rem; background-color: #f8d7da; color: #842029;">
+                    <div class="alert alert-error">
                         <?php 
                             if ($_GET['error'] === 'autenticacion_fallida') echo "Error en la autenticación. Correo o contraseña incorrectos.";
                             if ($_GET['error'] === 'campos_vacios') echo "Por favor llena todos los campos.";
+                            if ($_GET['error'] === 'acceso_requerido') echo "Debes iniciar sesión para acceder a esa página.";
                         ?>
                     </div>
                 <?php endif; ?>
@@ -76,6 +77,7 @@
                         <div class="input-wrapper">
                             <i class="fa-solid fa-lock input-icon"></i>
                             <input type="password" id="password" name="password" placeholder="••••••••" required>
+                            <i class="fa-regular fa-eye-slash toggle-password" id="togglePassword"></i>
                         </div>
                     </div>
 

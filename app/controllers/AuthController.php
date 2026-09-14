@@ -11,7 +11,6 @@ class AuthController {
         $this->cuentaModel = new Cuenta();
     }
 
-    // Procesar el registro de un nuevo usuario
     public function registrar() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nombre   = trim($_POST['nombre'] ?? '');
@@ -19,6 +18,13 @@ class AuthController {
             $password = trim($_POST['password'] ?? '');
 
             if (!empty($nombre) && !empty($email) && !empty($password)) {
+
+                // Validar requisitos de la contraseña ANTES de intentar registrar
+                if (!$this->cuentaModel->passwordEsValida($password)) {
+                    header("Location: ../views/public/registro.php?error=password_invalida");
+                    exit();
+                }
+
                 $exito = $this->cuentaModel->registrar($nombre, $email, $password);
 
                 if ($exito) {
@@ -34,6 +40,7 @@ class AuthController {
             }
         }
     }
+
 
     // Procesar el inicio de sesión
     public function login() {
@@ -52,7 +59,7 @@ class AuthController {
 
                     // Redirigir según el rol
                     if ($usuario['rol'] === 'Administrador') {
-                        header("Location: ../views/admin/dashboard.php");
+                        header("Location: ../views/admin/dashboard_admin.php");
                     } else {
                         header("Location: ../views/estudiante/dashboard_estudiante.php");
                     }

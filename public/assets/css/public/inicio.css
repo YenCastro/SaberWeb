@@ -14,78 +14,6 @@ body {
     line-height: 1.6;
 }
 
-/* NAVBAR BALANCEADO */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 1.2rem 2rem;
-    width: 100%;
-}
-
-.logo-img {
-    height: 55px;
-    width: auto;
-    display: block;
-    object-fit: contain;
-}
-
-.nav-links a {
-    margin: 0 1.2rem;
-    text-decoration: none;
-    color: var(--azul-oscuro);
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: color 0.2s ease;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-    color: var(--azul-principal);
-    border-bottom: 2px solid var(--azul-principal);
-    padding-bottom: 4px;
-}
-
-.auth-buttons {
-    display: flex;
-    gap: 0.8rem;
-}
-
-.btn-outline {
-    border: 1.5px solid var(--azul-principal);
-    color: var(--azul-principal);
-    padding: 0.65rem 1.3rem;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: .35s;
-}
-
-.btn-outline:hover {
-    background-color: var(--azul-claro);
-    transform: translateY(-3px);
-}
-
-.btn-primary {
-    background-color: var(--azul-principal);
-    color: var(--blanco);
-    padding: 0.65rem 1.3rem;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    display: inline-block;
-    transition: 0.35s;
-}
-
-.btn-primary:hover {
-    background-color: var(--azul-oscuro);
-    transform: translateY(-3px);
-}
-
 /* HERO SECTION BIEN CENTRADO Y CENTRADO EN MARGENES */
 .hero {
     display: flex;
@@ -391,9 +319,9 @@ body {
     text-decoration: none;
     cursor: pointer;
     transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 10px 15px #145ca0c2;
 }
 
-/* Al pasar el mouse por el wrapper, se mueven juntos el círculo grande Y el numerito */
 .step-icon-wrapper:hover .step-icon {
     background-color: var(--azul-principal);
     color: var(--blanco);
@@ -422,7 +350,6 @@ body {
     border: 2px solid var(--blanco);
     transition: transform 0.25s ease;
     pointer-events: none;
-    /* para que el hover del mouse "pase" al <a> aunque esté encima */
 }
 
 .step-item h3 {

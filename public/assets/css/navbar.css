@@ -1,0 +1,112 @@
+/* Navbar balanceado */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1.2rem 2rem;
+    width: 100%;
+}
+
+.logo-img {
+    height: 55px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* enlaces de navegacion */
+.nav-links a {
+    margin: 0 1.2rem;
+    text-decoration: none;
+    color: var(--azul-oscuro);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--azul-principal);
+    border-bottom: 2px solid var(--azul-principal);
+    padding-bottom: 4px;
+}
+
+/* botones de autenticacion publica (Iniciar Sesión / Regístrate) */
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.btn-outline {
+    border: 1.5px solid var(--azul-principal);
+    color: var(--azul-principal);
+    padding: 0.65rem 1.3rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: .35s;
+}
+
+.btn-outline:hover {
+    background-color: var(--azul-claro);
+    transform: translateY(-3px);
+}
+
+.btn-primary {
+    background-color: var(--azul-principal);
+    color: var(--blanco);
+    padding: 0.65rem 1.3rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: inline-block;
+    transition: 0.35s;
+}
+
+.btn-primary:hover {
+    background-color: var(--azul-oscuro);
+    transform: translateY(-3px);
+}
+
+/* Usuarion con una sesion, Estudiante | Admin */
+
+/* Contenedor del lado derecho: perfil con botón de salir */
+.user-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+/* Ícono con nombre del usuario, funciona como link al perfil */
+.navbar-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--azul-oscuro);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+    transition: color 0.2s ease;
+}
+
+.navbar-profile i {
+    font-size: 1.6rem;
+    color: var(--azul-principal);
+}
+
+.navbar-profile:hover,
+.navbar-profile.active {
+    color: var(--azul-principal);
+}
+
+/* Botón de cerrar sesión */
+.btn-logout {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}

@@ -2,6 +2,7 @@
 // app/controllers/EstudianteController.php
 
 session_start();
+require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../models/Cuenta.php';
 
 class EstudianteController {
@@ -54,10 +55,7 @@ class EstudianteController {
 
     // Verificar que exista una sesión activa
     private function verificarSesion() {
-        if (!isset($_SESSION['usuario_id'])) {
-            header("Location: ../views/public/login.php?error=sesion_requerida");
-            exit();
-        }
+        requerirSesion('Estudiante');
     }
 }
 

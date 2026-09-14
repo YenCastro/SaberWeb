@@ -2,7 +2,7 @@
     <div class="footer-content">
         <!-- Columna 1: Marca -->
         <div class="footer-col brand-col">
-            <img src="assets/img/logo/logo.png" alt="SaberWeb Logo" class="logo-img">
+            <img src="<?php echo BASE_URL; ?>public/assets/img/logo/logo.png" alt="SaberWeb Logo" class="logo-img">
             <p>Plataforma inteligente para prepararse en el examen ICFES Saber 11°.</p>
         </div>
 
@@ -20,9 +20,9 @@
         <div class="footer-col">
             <h4>Enlaces</h4>
             <ul>
-                <li><a href="index.php">Inicio</a></li>
-                <li><a href="simulacros.php">Simulacros</a></li>
-                <li><a href="resultados.php">Resultados</a></li>
+                <li><a href="<?php echo BASE_URL; ?>public/index.php">Inicio</a></li>
+                <li><a href="<?php echo BASE_URL; ?>public/simulacros.php">Simulacros</a></li>
+                <li><a href="<?php echo BASE_URL; ?>public/resultados.php">Resultados</a></li>
             </ul>
         </div>
 
@@ -40,7 +40,7 @@
         <div class="footer-col CTA-col">
             <h4>¿Listo para empezar?</h4>
             <p>Regístrate gratis y comienza tu preparación hoy mismo.</p>
-            <a href="./app/views/public/registro.php" class="btn-footer-cta">Regístrate ahora</a>
+            <a href="<?php echo BASE_URL; ?>app/views/public/registro.php" class="btn-footer-cta">Regístrate ahora</a>
         </div>
     </div>
 

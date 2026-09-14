@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SaberWeb - Prepárate para el ICFES Saber 11°</title>
     <link rel="stylesheet" href="assets/css/public/inicio.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,22 +16,9 @@
 </head>
 
 <body>
-    <header class="navbar">
-        <div class="logo">
-            <a href="index.php">
-                <img src="assets/img/logo/logo.png" alt="SaberWeb Logo" class="logo-img">
-            </a>
-        </div>
-        <nav class="nav-links">
-            <a href="index.php" class="active">Inicio</a>
-            <a href="simulacros.php">Simulacros</a>
-            <a href="resultados.php">Resultados</a>
-        </nav>
-        <div class="auth-buttons">
-            <a href="../app/views/public/login.php" class="btn-outline">Iniciar Sesión</a>
-            <a href="../app/views/public/registro.php" class="btn-primary">Regístrate</a>
-        </div>
-    </header>
+
+    <!-- llamar el navbar -->
+    <?php include ROOT_PATH . 'app/views/layouts/navbar.php'; ?>
 
     <!-- HERO SECTION -->
     <section class="hero">

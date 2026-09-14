@@ -47,10 +47,11 @@
 
                 <!-- MENSAJES DE ALERTA PROVENIENTES DEL CONTROLADOR -->
                 <?php if (isset($_GET['error'])): ?>
-                    <div style="padding: 10px; margin-bottom: 15px; border-radius: 8px; text-align: center; font-size: 0.85rem; background-color: #f8d7da; color: #842029;">
+                    <div class="alert alert-error">
                         <?php 
                             if ($_GET['error'] === 'correo_existente') echo "El correo electrónico ya se encuentra registrado.";
                             if ($_GET['error'] === 'campos_vacios') echo "Por favor completa todos los campos obligatorios.";
+                            if ($_GET['error'] === 'password_invalida') echo "La contraseña debe tener mínimo 8 caracteres, una mayúscula y un número.";
                         ?>
                     </div>
                 <?php endif; ?>
@@ -80,6 +81,7 @@
                             <input type="password" id="password" name="password" placeholder="••••••••" required>
                             <i class="fa-regular fa-eye-slash toggle-password" id="togglePassword"></i>
                         </div>
+                        <span id="passwordHint" class="help-text">Mínimo 8 caracteres, una mayúscula y un número.</span>
                     </div>
 
                     <div class="form-options">
