@@ -21,8 +21,8 @@
             <h4>Enlaces</h4>
             <ul>
                 <li><a href="<?php echo BASE_URL; ?>public/index.php">Inicio</a></li>
-                <li><a href="<?php echo BASE_URL; ?>public/simulacros.php">Simulacros</a></li>
-                <li><a href="<?php echo BASE_URL; ?>public/resultados.php">Resultados</a></li>
+                <li><a href="<?php echo urlSimulacros(); ?>">Simulacros</a></li>
+                <li><a href="<?php echo urlResultados(); ?>">Resultados</a></li>
             </ul>
         </div>
 

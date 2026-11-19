@@ -1,4 +1,4 @@
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/Proyecto SENA SaberWeb/app/config/config.php'; ?>
+<?php require_once __DIR__ . '/../app/config/config.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -17,24 +17,7 @@
 
 <body>
 
-    <header class="navbar">
-    <div class="logo">
-        <a href="index.html">
-            <img src="assets/img/logo/logo.png" alt="SaberWeb Logo" class="logo-img">
-        </a>
-    </div>
-
-    <!-- NAVBAR PÚBLICO (Versión Estática) -->
-    <nav class="nav-links">
-        <a href="index.html" class="active">Inicio</a>
-        <a href="#simulacros">Simulacros</a>
-        <a href="#resultados">Resultados</a>
-    </nav>
-    <div class="auth-buttons">
-        <a href="#" class="btn-outline">Iniciar Sesión</a>
-        <a href="#" class="btn-primary">Regístrate</a>
-    </div>
-</header>
+    <?php include ROOT_PATH . 'app/views/layouts/navbar.php'; ?>
 
     <!-- HERO SECTION INIT -->
     <section class="hero">
@@ -45,7 +28,7 @@
                 UNAL.</p>
 
             <div class="hero-actions">
-                <a href="simulacros.php" class="btn-primary-icon">
+                <a href="<?php echo urlSimulacros(); ?>" class="btn-primary-icon">
                     Comenzar ahora <i class="fa-solid fa-arrow-right"></i>
                 </a>
                 <a href="#como-funciona" class="btn-outline-icon">
@@ -116,7 +99,7 @@
         <div class="steps-container">
             <div class="step-item">
                 <div class="step-icon-wrapper">
-                    <a href="../app/views/public/registro.php" class="step-icon">
+                    <a href="<?php echo BASE_URL; ?>app/views/public/registro.php" class="step-icon">
                         <i class="fa-solid fa-user-plus"></i>
                     </a>
                     <span class="step-number">1</span>
@@ -127,7 +110,7 @@
             <div class="step-line"></div>
             <div class="step-item">
                 <div class="step-icon-wrapper">
-                    <a href="simulacros.php" class="step-icon">
+                    <a href="<?php echo urlSimulacros(); ?>" class="step-icon">
                         <i class="fa-solid fa-copy"></i>
                     </a>
                     <span class="step-number">2</span>
@@ -138,7 +121,7 @@
             <div class="step-line"></div>
             <div class="step-item">
                 <div class="step-icon-wrapper">
-                    <a href="#" class="step-icon">
+                    <a href="<?php echo urlSimulacros(); ?>" class="step-icon">
                         <i class="fa-solid fa-pen"></i>
                     </a>
                     <span class="step-number">3</span>
@@ -149,7 +132,7 @@
             <div class="step-line"></div>
             <div class="step-item">
                 <div class="step-icon-wrapper">
-                    <a href="resultados.php" class="step-icon">
+                    <a href="<?php echo urlResultados(); ?>" class="step-icon">
                         <i class="fa-solid fa-chart-line"></i>
                     </a>
                     <span class="step-number">4</span>
@@ -160,7 +143,7 @@
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <script src="assets/js/main.js"></script>
     <?php include ROOT_PATH . 'app/views/layouts/footer.php'; ?>
 </body>
 </html>

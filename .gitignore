@@ -1,0 +1,16 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+
+# Archivos temporales y logs
+*.log
+*.tmp
+*.bak
+
+# Copias de respaldo de la base de datos (el oficial es database/saberweb.sql)
+database/*_backup*.sql

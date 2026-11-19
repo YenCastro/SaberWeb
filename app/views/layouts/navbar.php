@@ -39,10 +39,10 @@ $rol = $_SESSION['usuario_rol'] ?? null;
         <nav class="nav-links">
             <a href="<?php echo BASE_URL; ?>app/views/estudiante/dashboard_estudiante.php" class="<?php echo ($paginaActual === 'dashboard_estudiante.php') ? 'active' : ''; ?>">Inicio</a>
             <a href="<?php echo BASE_URL; ?>app/views/estudiante/simulacros.php" class="<?php echo ($paginaActual === 'simulacros.php') ? 'active' : ''; ?>">Simulacros</a>
-            <a href="<?php echo BASE_URL; ?>app/views/estudiante/resultado.php" class="<?php echo ($paginaActual === 'resultado.php') ? 'active' : ''; ?>">Resultados</a>
+            <a href="<?php echo BASE_URL; ?>app/views/estudiante/historial.php" class="<?php echo ($paginaActual === 'historial.php' || $paginaActual === 'resultado.php') ? 'active' : ''; ?>">Resultados</a>
         </nav>
         <div class="auth-buttons user-buttons">
-            <a href="<?php echo BASE_URL; ?>app/views/estudiante/perfil.php" class="navbar-profile <?php echo ($paginaActual === 'perfil.php') ? 'active' : ''; ?>">
+            <a href="<?php echo BASE_URL; ?>app/controllers/EstudianteController.php?action=verPerfil" class="navbar-profile <?php echo ($paginaActual === 'perfil.php' || $paginaActual === 'EstudianteController.php') ? 'active' : ''; ?>">
                 <i class="fa-solid fa-circle-user"></i>
                 <span class="navbar-saludo"><?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?></span>
             </a>
@@ -56,8 +56,8 @@ $rol = $_SESSION['usuario_rol'] ?? null;
         <!-- NAVBAR PÚBLICO (sin sesión) -->
         <nav class="nav-links">
             <a href="<?php echo BASE_URL; ?>public/index.php" class="<?php echo ($paginaActual === 'index.php') ? 'active' : ''; ?>">Inicio</a>
-            <a href="<?php echo BASE_URL; ?>public/simulacros.php" class="<?php echo ($paginaActual === 'simulacros.php') ? 'active' : ''; ?>">Simulacros</a>
-            <a href="<?php echo BASE_URL; ?>public/resultados.php" class="<?php echo ($paginaActual === 'resultados.php') ? 'active' : ''; ?>">Resultados</a>
+            <a href="<?php echo urlSimulacros(); ?>">Simulacros</a>
+            <a href="<?php echo urlResultados(); ?>">Resultados</a>
         </nav>
         <div class="auth-buttons">
             <a href="<?php echo BASE_URL; ?>app/views/public/login.php" class="btn-outline">Iniciar Sesión</a>

@@ -1,7 +1,6 @@
 <?php
 // app/controllers/EstudianteController.php
 
-session_start();
 require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../models/Cuenta.php';
 

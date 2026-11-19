@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Proyecto SENA SaberWeb/app/config/config.php';
+require_once __DIR__ . '/../../config/config.php';
 requerirSesion('Estudiante');
 
 $nombreActual = $cuenta['nombre_completo'] ?? ($_SESSION['usuario_nombre'] ?? 'Estudiante');

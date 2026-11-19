@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Proyecto SENA SaberWeb/app/config/config.php';
+require_once __DIR__ . '/../../config/config.php';
 requerirSesion('Estudiante');
 ?>
 
@@ -147,7 +146,7 @@ requerirSesion('Estudiante');
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <script src="<?php echo BASE_URL; ?>public/assets/js/main.js"></script>
     <?php include ROOT_PATH . 'app/views/layouts/footer.php'; ?>
 
     <script>
