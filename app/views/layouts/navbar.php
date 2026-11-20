@@ -24,10 +24,10 @@ $rol = $_SESSION['usuario_rol'] ?? null;
             <a href="<?php echo BASE_URL; ?>app/views/admin/reportes.php" class="<?php echo ($paginaActual === 'reportes.php') ? 'active' : ''; ?>">Reportes</a>
         </nav>
         <div class="auth-buttons user-buttons">
-            <a href="<?php echo BASE_URL; ?>app/views/admin/perfil.php" class="navbar-profile">
+            <span class="navbar-profile">
                 <i class="fa-solid fa-circle-user"></i>
                 <span class="navbar-saludo"><?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?></span>
-            </a>
+            </span>
             <a href="<?php echo BASE_URL; ?>app/controllers/AuthController.php?action=logout" class="btn-outline btn-logout">
                 <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
             </a>

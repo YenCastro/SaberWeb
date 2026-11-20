@@ -1,17 +1,14 @@
 <?php
 // app/config/config.php
 
-// Iniciar sesión una sola vez (seguro si otro archivo ya la inició)
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Ruta absoluta del proyecto en el servidor (se calcula sola: sube 2 niveles desde app/config/)
 define('ROOT_PATH', str_replace('\\', '/', dirname(__DIR__, 2)) . '/');
 
-// URL base del proyecto (se calcula sola a partir de DOCUMENT_ROOT).
-// Funciona sin importar el nombre de la carpeta: /SaberWeb/, /Proyecto SENA SaberWeb/, etc.
-// Si el proyecto está en la raíz del servidor, queda '/'.
+
 (function () {
     $docRoot = str_replace('\\', '/', realpath($_SERVER['DOCUMENT_ROOT'] ?? '') ?: '');
     $root    = rtrim(ROOT_PATH, '/');
@@ -52,4 +49,29 @@ function urlResultados() {
     if ($rol === 'Estudiante')    return BASE_URL . 'app/views/estudiante/historial.php';
     if ($rol === 'Administrador') return BASE_URL . 'app/views/admin/dashboard_admin.php';
     return BASE_URL . 'app/views/public/login.php?error=acceso_requerido';
+}
+
+// ---------------------------------------------------------------------
+// Ayudantes generales
+// ---------------------------------------------------------------------
+
+// Escapar texto antes de mostrarlo en HTML (evita XSS)
+function e($valor) {
+    return htmlspecialchars((string)$valor, ENT_QUOTES, 'UTF-8');
+}
+
+// Token CSRF: protege los formularios que modifican datos
+function csrf_token() {
+    if (empty($_SESSION['csrf'])) {
+        $_SESSION['csrf'] = bin2hex(random_bytes(32));
+    }
+    return $_SESSION['csrf'];
+}
+
+function csrf_campo() {
+    return '<input type="hidden" name="csrf" value="' . e(csrf_token()) . '">';
+}
+
+function csrf_valido() {
+    return isset($_POST['csrf'], $_SESSION['csrf']) && hash_equals($_SESSION['csrf'], $_POST['csrf']);
 }
