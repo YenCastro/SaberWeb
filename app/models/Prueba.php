@@ -30,6 +30,19 @@ class Prueba {
         }
     }
 
+    // CONSULTAR: solo las pruebas publicadas (lo que ven los estudiantes)
+    public function listarPublicadas() {
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT * FROM pruebas WHERE estado = 'Publicado' ORDER BY anio DESC, id_prueba DESC"
+            );
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return [];
+        }
+    }
+
     // CONSULTAR: una prueba por id
     public function obtener($idPrueba) {
         try {

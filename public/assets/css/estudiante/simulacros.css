@@ -1,0 +1,5 @@
+/* public/assets/css/estudiante/simulacros.css
+   Reutiliza los componentes del panel (tarjetas, botones, etiquetas, avisos). */
+@import url('../admin/admin.css');
+
+.est-main { flex: 1; width: 100%; max-width: 1000px; margin: 0 auto; padding: 36px 20px 56px; }

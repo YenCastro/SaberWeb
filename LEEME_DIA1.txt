@@ -1,8 +1,0 @@
-SABERWEB - CAMBIOS DEL DIA 1
-=============================
-1. Copia estas carpetas/archivos sobre tu proyecto (te pedirá reemplazar: di que sí).
-2. BORRA public/index.html (ya no se usa; el inicio es public/index.php).
-3. En phpMyAdmin (base saberweb > pestaña SQL) ejecuta database/migracion_dia1.sql UNA vez.
-   (Antes haz Exportar como respaldo.) Cambia el correo del admin al final del script si quieres otra cuenta.
-4. Abre http://localhost/<carpeta-de-tu-proyecto>/public/index.php
-5. Haz commit y push para que yo pueda revisar.

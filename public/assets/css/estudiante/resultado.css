@@ -1,0 +1,39 @@
+/* public/assets/css/estudiante/resultado.css */
+@import url('../admin/admin.css');
+
+.est-main { flex: 1; width: 100%; max-width: 900px; margin: 0 auto; padding: 36px 20px 56px; }
+
+.resultado-principal { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
+.resultado-principal h1 { font-size: 1.4rem; color: var(--azul-oscuro); margin-bottom: 4px; }
+
+/* Círculo de puntaje: el relleno usa la variable --p (0 a 100) */
+.puntaje-circulo {
+    --p: 0;
+    width: 150px; height: 150px; border-radius: 50%; flex-shrink: 0;
+    background: conic-gradient(var(--azul-principal) calc(var(--p) * 1%), var(--azul-claro) 0);
+    display: grid; place-items: center;
+}
+.puntaje-circulo > div {
+    width: 118px; height: 118px; border-radius: 50%; background: var(--blanco);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.puntaje-circulo strong { font-size: 2.4rem; color: var(--azul-oscuro); line-height: 1; }
+.puntaje-circulo span { font-size: 0.8rem; color: var(--gris-texto); }
+
+.resumen-numeros { display: flex; gap: 26px; margin: 16px 0 10px; flex-wrap: wrap; }
+.resumen-numeros strong { display: block; font-size: 1.6rem; color: var(--azul-oscuro); }
+.resumen-numeros strong.ok { color: var(--exito); }
+.resumen-numeros strong.mal { color: var(--peligro); }
+.resumen-numeros span { font-size: 0.85rem; color: var(--gris-texto); }
+
+.area-fila { display: grid; grid-template-columns: 200px 1fr 110px; gap: 14px; align-items: center; padding: 10px 0; border-bottom: 1px dashed var(--gris-borde); }
+.area-fila:last-child { border-bottom: none; }
+.area-nombre { font-weight: 600; color: var(--azul-oscuro); }
+.area-dato { font-size: 0.88rem; color: var(--gris-texto); text-align: right; }
+.barra { height: 10px; background: var(--azul-claro); border-radius: 999px; overflow: hidden; }
+.barra-relleno { height: 100%; background: var(--azul-principal); border-radius: 999px; }
+
+@media (max-width: 640px) {
+    .area-fila { grid-template-columns: 1fr; gap: 6px; }
+    .area-dato { text-align: left; }
+}
