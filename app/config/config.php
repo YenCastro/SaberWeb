@@ -75,3 +75,14 @@ function csrf_campo() {
 function csrf_valido() {
     return isset($_POST['csrf'], $_SESSION['csrf']) && hash_equals($_SESSION['csrf'], $_POST['csrf']);
 }
+
+// Convierte segundos en texto legible: 95 -> "1 min 35 s", 3700 -> "1 h 1 min"
+function duracionLegible($segundos) {
+    $segundos = max(0, (int)$segundos);
+    $h = intdiv($segundos, 3600);
+    $m = intdiv($segundos % 3600, 60);
+    $s = $segundos % 60;
+    if ($h > 0) return $h . ' h ' . $m . ' min';
+    if ($m > 0) return $m . ' min ' . $s . ' s';
+    return $s . ' s';
+}

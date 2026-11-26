@@ -1,0 +1,26 @@
+/* public/assets/css/estudiante/historial.css */
+@import url('../admin/admin.css');
+
+.est-main { flex: 1; width: 100%; max-width: 1000px; margin: 0 auto; padding: 36px 20px 56px; }
+
+/* Gráfica de evolución */
+.grafica { display: flex; align-items: flex-end; gap: 14px; height: 190px; padding: 8px 4px 0; overflow-x: auto; }
+.grafica-col { flex: 1; min-width: 38px; max-width: 80px; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 4px; }
+.grafica-barra { width: 100%; border-radius: 8px 8px 0 0; min-height: 4px; }
+.grafica-valor { font-size: 0.8rem; font-weight: 700; color: var(--azul-oscuro); }
+.grafica-fecha { font-size: 0.72rem; color: var(--gris-texto); }
+.nivel-alto { background: #16A34A; }
+.nivel-medio { background: #F59E0B; }
+.nivel-bajo { background: #DC2626; }
+
+/* Lista de intentos */
+.intento-fila { display: flex; align-items: center; gap: 16px; padding: 14px 0; border-bottom: 1px dashed var(--gris-borde); flex-wrap: wrap; }
+.intento-fila:last-child { border-bottom: none; }
+.intento-info { flex: 1; min-width: 240px; }
+.intento-info strong { color: var(--azul-oscuro); }
+
+.puntaje-pill { display: inline-flex; align-items: baseline; gap: 2px; padding: 6px 14px; border-radius: 999px; font-weight: 700; font-size: 1.1rem; color: var(--blanco); }
+.puntaje-pill small { font-size: 0.7rem; opacity: 0.85; font-weight: 500; }
+.puntaje-pill.nivel-alto { background: #16A34A; }
+.puntaje-pill.nivel-medio { background: #D97706; }
+.puntaje-pill.nivel-bajo { background: #DC2626; }

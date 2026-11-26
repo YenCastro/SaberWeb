@@ -146,4 +146,94 @@ class Resultado {
         }
         return $resumen;
     }
+
+    // CONSULTAR: historial de intentos de un estudiante (el más reciente primero)
+    public function listarPorCuenta($idCuenta, $limite = 100) {
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT r.id_resultado, r.puntaje, r.respuestas_correctas, r.respuestas_incorrectas,
+                        r.estado, r.fecha_realizacion, r.fecha_fin,
+                        TIMESTAMPDIFF(SECOND, r.fecha_realizacion, r.fecha_fin) AS segundos_usados,
+                        s.titulo AS sesion_titulo, s.duracion_minutos,
+                        p.titulo AS prueba_titulo, p.tipo AS prueba_tipo
+                 FROM resultados r
+                 INNER JOIN simulacro s ON s.id_simulacro = r.id_simulacro
+                 INNER JOIN pruebas p ON p.id_prueba = s.id_prueba
+                 WHERE r.id_cuenta = :c
+                 ORDER BY r.fecha_realizacion DESC, r.id_resultado DESC
+                 LIMIT :l"
+            );
+            $stmt->bindValue(":c", (int)$idCuenta, PDO::PARAM_INT);
+            $stmt->bindValue(":l", (int)$limite, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return [];
+        }
+    }
+
+    // CONSULTAR: números generales del estudiante (solo intentos finalizados)
+    public function estadisticasCuenta($idCuenta) {
+        $vacio = ['intentos' => 0, 'mejor' => 0, 'promedio' => 0];
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT COUNT(*) AS intentos, COALESCE(MAX(puntaje), 0) AS mejor, COALESCE(ROUND(AVG(puntaje)), 0) AS promedio
+                 FROM resultados WHERE id_cuenta = :c AND estado = 'Finalizado'"
+            );
+            $stmt->execute([":c" => (int)$idCuenta]);
+            return $stmt->fetch(PDO::FETCH_ASSOC) ?: $vacio;
+        } catch (PDOException $e) {
+            return $vacio;
+        }
+    }
+
+    // CONSULTAR: revisión pregunta por pregunta de un intento.
+    // Cada pregunta trae su lista de opciones, la opción elegida y la correcta.
+    // Solo debe mostrarse cuando el intento ya está Finalizado (si no, se estarían regalando las respuestas).
+    public function revision($idResultado, $idSimulacro) {
+        $preguntas = [];
+        try {
+            $stmt = $this->conn->prepare(
+                "SELECT q.id_pregunta, q.numero_pregunta, q.area, q.enunciado, re.id_opcion AS elegida
+                 FROM preguntas q
+                 LEFT JOIN respuestas_estudiante re ON re.id_pregunta = q.id_pregunta AND re.id_resultado = :r
+                 WHERE q.id_simulacro = :s
+                 ORDER BY q.numero_pregunta ASC"
+            );
+            $stmt->execute([":r" => (int)$idResultado, ":s" => (int)$idSimulacro]);
+            $preguntas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if (count($preguntas) === 0) {
+                return [];
+            }
+
+            $ids = array_map('intval', array_column($preguntas, 'id_pregunta'));
+            $marcadores = implode(',', array_fill(0, count($ids), '?'));
+            $stmt = $this->conn->prepare(
+                "SELECT id_pregunta, id_opcion, letra, texto, es_correcta
+                 FROM opciones_rta WHERE id_pregunta IN ($marcadores) ORDER BY id_pregunta, letra"
+            );
+            $stmt->execute($ids);
+            $porPregunta = [];
+            foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $o) {
+                $porPregunta[$o['id_pregunta']][] = $o;
+            }
+
+            foreach ($preguntas as &$q) {
+                $q['opciones'] = $porPregunta[$q['id_pregunta']] ?? [];
+                $q['estado'] = 'sin_responder';
+                if ($q['elegida'] !== null) {
+                    $q['estado'] = 'incorrecta';
+                    foreach ($q['opciones'] as $o) {
+                        if ((int)$o['id_opcion'] === (int)$q['elegida'] && (int)$o['es_correcta'] === 1) {
+                            $q['estado'] = 'correcta';
+                        }
+                    }
+                }
+            }
+            unset($q);
+        } catch (PDOException $e) {
+            return [];
+        }
+        return $preguntas;
+    }
 }

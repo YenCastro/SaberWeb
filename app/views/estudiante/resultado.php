@@ -18,9 +18,10 @@ if ($r['estado'] === 'En curso') {
 }
 
 $areas   = $resultadoModel->detallePorArea($idResultado, $r['id_simulacro']);
+$revision = $resultadoModel->revision($idResultado, $r['id_simulacro']);
+$cuenta = ['correcta' => 0, 'incorrecta' => 0, 'sin_responder' => 0];
+foreach ($revision as $q) { $cuenta[$q['estado']]++; }
 $total   = (int)$r['respuestas_correctas'] + (int)$r['respuestas_incorrectas'];
-$minutos = (int)floor(((int)$r['segundos_usados']) / 60);
-$segs    = ((int)$r['segundos_usados']) % 60;
 $puntaje = (int)$r['puntaje'];
 
 $tituloPagina = 'Resultado - SaberWeb';
@@ -41,7 +42,7 @@ include ROOT_PATH . 'app/views/layouts/header.php';
         <div>
             <h1><?php echo e($r['prueba_titulo']); ?></h1>
             <p class="ayuda"><?php echo e($r['sesion_titulo']); ?> · <?php echo e(date('d/m/Y H:i', strtotime($r['fecha_realizacion']))); ?>
-                · Tiempo usado: <?php echo $minutos; ?> min <?php echo $segs; ?> s</p>
+                · Tiempo usado: <?php echo e(duracionLegible($r['segundos_usados'])); ?></p>
             <div class="resumen-numeros">
                 <div><strong class="ok"><?php echo (int)$r['respuestas_correctas']; ?></strong><span>Correctas</span></div>
                 <div><strong class="mal"><?php echo (int)$r['respuestas_incorrectas']; ?></strong><span>Incorrectas o sin responder</span></div>
@@ -63,11 +64,54 @@ include ROOT_PATH . 'app/views/layouts/header.php';
         <?php endforeach; ?>
     </div>
 
+    <div class="card" id="revision">
+        <div class="revision-cab">
+            <h2>Revisión de preguntas</h2>
+            <div class="filtros" role="group" aria-label="Filtrar preguntas">
+                <button type="button" class="filtro activo" data-filtro="todas" aria-pressed="true">Todas (<?php echo count($revision); ?>)</button>
+                <button type="button" class="filtro" data-filtro="incorrecta" aria-pressed="false">Incorrectas (<?php echo $cuenta['incorrecta']; ?>)</button>
+                <button type="button" class="filtro" data-filtro="sin_responder" aria-pressed="false">Sin responder (<?php echo $cuenta['sin_responder']; ?>)</button>
+                <button type="button" class="filtro" data-filtro="correcta" aria-pressed="false">Correctas (<?php echo $cuenta['correcta']; ?>)</button>
+            </div>
+        </div>
+
+        <?php $etiquetas = ['correcta' => 'Correcta', 'incorrecta' => 'Incorrecta', 'sin_responder' => 'Sin responder']; ?>
+        <?php foreach ($revision as $q): ?>
+            <article class="rev-item rev-<?php echo e($q['estado']); ?>" data-estado="<?php echo e($q['estado']); ?>">
+                <div class="rev-cab">
+                    <div class="meta">
+                        <strong>Pregunta <?php echo (int)$q['numero_pregunta']; ?></strong>
+                        <span class="badge badge-area"><?php echo e($q['area']); ?></span>
+                    </div>
+                    <span class="rev-estado rev-estado-<?php echo e($q['estado']); ?>"><?php echo e($etiquetas[$q['estado']]); ?></span>
+                </div>
+                <p class="enunciado-rev"><?php echo e($q['enunciado']); ?></p>
+                <ul class="rev-opciones">
+                    <?php foreach ($q['opciones'] as $o):
+                        $esCorrecta = ((int)$o['es_correcta'] === 1);
+                        $esElegida  = ($q['elegida'] !== null && (int)$q['elegida'] === (int)$o['id_opcion']);
+                        $clase = $esCorrecta ? 'op-correcta' : ($esElegida ? 'op-mala' : '');
+                    ?>
+                        <li class="<?php echo $clase; ?>">
+                            <span class="op-letra"><?php echo e($o['letra']); ?></span>
+                            <span class="op-texto"><?php echo e($o['texto']); ?></span>
+                            <?php if ($esElegida): ?><span class="op-tag">Tu respuesta</span><?php endif; ?>
+                            <?php if ($esCorrecta): ?><span class="op-tag op-tag-ok"><i class="fa-solid fa-check"></i> Respuesta correcta</span><?php endif; ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </article>
+        <?php endforeach; ?>
+        <p class="vacio" id="revision-vacia" hidden>No hay preguntas en este filtro.</p>
+    </div>
+
     <div class="fila-botones">
         <a class="btn btn-azul" href="<?php echo BASE_URL; ?>app/views/estudiante/simulacros.php"><i class="fa-solid fa-list-check"></i> Más simulacros</a>
+        <a class="btn btn-borde" href="<?php echo BASE_URL; ?>app/views/estudiante/historial.php"><i class="fa-solid fa-clock-rotate-left"></i> Mi historial</a>
     </div>
 </main>
 
 <?php include ROOT_PATH . 'app/views/layouts/footer.php'; ?>
+<script src="<?php echo BASE_URL; ?>public/assets/js/estudiante/resultado.js"></script>
 </body>
 </html>

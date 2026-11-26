@@ -31,7 +31,7 @@ requerirSesion('Estudiante');
                 UNAL.</p>
 
             <div class="hero-actions">
-                <a href="simulacros.php" class="btn-primary-icon">
+                <a href="<?php echo BASE_URL; ?>app/views/estudiante/simulacros.php" class="btn-primary-icon">
                     Comenzar ahora <i class="fa-solid fa-arrow-right"></i>
                 </a>
                 <a href="#como-funciona" class="btn-outline-icon">
@@ -102,7 +102,7 @@ requerirSesion('Estudiante');
         <div class="steps-container">
             <div class="step-item">
                 <div class="step-icon-wrapper">
-                    <a href="../app/views/public/registro.php" class="step-icon">
+                    <a href="<?php echo BASE_URL; ?>app/controllers/EstudianteController.php?action=verPerfil" class="step-icon">
                         <i class="fa-solid fa-user-plus"></i>
                     </a>
                     <span class="step-number">1</span>
@@ -113,7 +113,7 @@ requerirSesion('Estudiante');
             <div class="step-line"></div>
             <div class="step-item">
                 <div class="step-icon-wrapper">
-                    <a href="simulacros.php" class="step-icon">
+                    <a href="<?php echo BASE_URL; ?>app/views/estudiante/simulacros.php" class="step-icon">
                         <i class="fa-solid fa-copy"></i>
                     </a>
                     <span class="step-number">2</span>
@@ -124,7 +124,7 @@ requerirSesion('Estudiante');
             <div class="step-line"></div>
             <div class="step-item">
                 <div class="step-icon-wrapper">
-                    <a href="#" class="step-icon">
+                    <a href="<?php echo BASE_URL; ?>app/views/estudiante/simulacros.php" class="step-icon">
                         <i class="fa-solid fa-pen"></i>
                     </a>
                     <span class="step-number">3</span>
@@ -135,7 +135,7 @@ requerirSesion('Estudiante');
             <div class="step-line"></div>
             <div class="step-item">
                 <div class="step-icon-wrapper">
-                    <a href="resultados.php" class="step-icon">
+                    <a href="<?php echo BASE_URL; ?>app/views/estudiante/historial.php" class="step-icon">
                         <i class="fa-solid fa-chart-line"></i>
                     </a>
                     <span class="step-number">4</span>
