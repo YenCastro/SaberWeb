@@ -6,6 +6,21 @@ if (session_status() === PHP_SESSION_NONE) {
 
 $paginaActual = basename($_SERVER['PHP_SELF']);
 $rol = $_SESSION['usuario_rol'] ?? null;
+
+// Numeritos del menú: notificaciones sin leer (estudiante) o reportes pendientes (admin).
+// Si algo falla, simplemente no se muestra el número.
+$numNotificaciones = 0;
+$numPendientes = 0;
+try {
+    if ($rol === 'Estudiante') {
+        require_once ROOT_PATH . 'app/models/Notificacion.php';
+        $numNotificaciones = (new Notificacion())->contarNoLeidas($_SESSION['usuario_id']);
+    } elseif ($rol === 'Administrador') {
+        require_once ROOT_PATH . 'app/models/Reporte.php';
+        $numPendientes = (new Reporte())->contarPendientes();
+    }
+} catch (Throwable $e) {
+}
 ?>
 <header class="navbar">
     <div class="logo">
@@ -21,7 +36,7 @@ $rol = $_SESSION['usuario_rol'] ?? null;
             <a href="<?php echo BASE_URL; ?>app/views/admin/dashboard_admin.php" class="<?php echo ($paginaActual === 'dashboard_admin.php') ? 'active' : ''; ?>">Panel</a>
             <a href="<?php echo BASE_URL; ?>app/views/admin/simulacros.php" class="<?php echo ($paginaActual === 'simulacros.php') ? 'active' : ''; ?>">Simulacros</a>
             <a href="<?php echo BASE_URL; ?>app/views/admin/preguntas.php" class="<?php echo ($paginaActual === 'preguntas.php') ? 'active' : ''; ?>">Preguntas</a>
-            <a href="<?php echo BASE_URL; ?>app/views/admin/reportes.php" class="<?php echo ($paginaActual === 'reportes.php') ? 'active' : ''; ?>">Reportes</a>
+            <a href="<?php echo BASE_URL; ?>app/views/admin/reportes.php" class="<?php echo ($paginaActual === 'reportes.php') ? 'active' : ''; ?>">Reportes<?php if ($numPendientes > 0): ?><span class="nav-badge" title="Reportes pendientes"><?php echo min($numPendientes, 99); ?></span><?php endif; ?></a>
         </nav>
         <div class="auth-buttons user-buttons">
             <span class="navbar-profile">
@@ -40,8 +55,14 @@ $rol = $_SESSION['usuario_rol'] ?? null;
             <a href="<?php echo BASE_URL; ?>app/views/estudiante/dashboard_estudiante.php" class="<?php echo ($paginaActual === 'dashboard_estudiante.php') ? 'active' : ''; ?>">Inicio</a>
             <a href="<?php echo BASE_URL; ?>app/views/estudiante/simulacros.php" class="<?php echo ($paginaActual === 'simulacros.php') ? 'active' : ''; ?>">Simulacros</a>
             <a href="<?php echo BASE_URL; ?>app/views/estudiante/historial.php" class="<?php echo ($paginaActual === 'historial.php' || $paginaActual === 'resultado.php') ? 'active' : ''; ?>">Resultados</a>
+            <a href="<?php echo BASE_URL; ?>app/views/estudiante/reportar.php" class="<?php echo ($paginaActual === 'reportar.php') ? 'active' : ''; ?>">Sugerencias</a>
         </nav>
         <div class="auth-buttons user-buttons">
+            <a href="<?php echo BASE_URL; ?>app/views/estudiante/notificaciones.php" class="navbar-bell <?php echo ($paginaActual === 'notificaciones.php') ? 'active' : ''; ?>"
+               aria-label="Notificaciones<?php echo $numNotificaciones > 0 ? ' (' . $numNotificaciones . ' sin leer)' : ''; ?>">
+                <i class="fa-regular fa-bell"></i>
+                <?php if ($numNotificaciones > 0): ?><span class="nav-badge"><?php echo min($numNotificaciones, 99); ?></span><?php endif; ?>
+            </a>
             <a href="<?php echo BASE_URL; ?>app/controllers/EstudianteController.php?action=verPerfil" class="navbar-profile <?php echo ($paginaActual === 'perfil.php' || $paginaActual === 'EstudianteController.php') ? 'active' : ''; ?>">
                 <i class="fa-solid fa-circle-user"></i>
                 <span class="navbar-saludo"><?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?></span>

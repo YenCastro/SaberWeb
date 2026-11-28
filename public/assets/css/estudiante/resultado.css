@@ -70,3 +70,6 @@
 .rev-opciones li.op-mala { border-color: var(--peligro-borde); background: var(--peligro-fondo); }
 .rev-opciones li.op-mala .op-letra { background: var(--peligro); color: var(--blanco); }
 .rev-opciones li.op-mala .op-tag { background: var(--peligro-fondo); color: var(--peligro); border: 1px solid var(--peligro-borde); }
+
+.rev-reportar { display: inline-block; margin-top: 12px; font-size: 0.85rem; font-weight: 600; color: var(--azul-principal); text-decoration: none; }
+.rev-reportar:hover { text-decoration: underline; }

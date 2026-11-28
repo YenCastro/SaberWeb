@@ -13,6 +13,7 @@ $textosOk = [
     'pregunta_creada'      => 'Pregunta guardada.',
     'pregunta_actualizada' => 'Pregunta actualizada.',
     'pregunta_eliminada'   => 'Pregunta eliminada. Las demás se renumeraron.',
+    'reporte_actualizado'  => 'Reporte actualizado.',
 ];
 $textosError = [
     'solicitud_invalida'   => 'La solicitud no es válida. Intenta de nuevo.',
@@ -27,6 +28,7 @@ $textosError = [
     'minimo_dos_opciones'  => 'Escribe al menos las opciones A y B.',
     'sin_correcta'         => 'Marca cuál es la respuesta correcta (debe tener texto).',
     'no_encontrado'        => 'No se encontró lo que buscabas.',
+    'reporte_invalido'     => 'No se pudo actualizar el reporte: revisa el estado elegido y que el mensaje tenga máximo 500 caracteres.',
 ];
 
 $mensaje = $_GET['mensaje'] ?? '';

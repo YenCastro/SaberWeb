@@ -100,6 +100,8 @@ include ROOT_PATH . 'app/views/layouts/header.php';
                         </li>
                     <?php endforeach; ?>
                 </ul>
+                <a class="rev-reportar" href="<?php echo BASE_URL; ?>app/views/estudiante/reportar.php?id_pregunta=<?php echo (int)$q['id_pregunta']; ?>&id_resultado=<?php echo $idResultado; ?>">
+                    <i class="fa-regular fa-flag"></i> Reportar un error o hacer una consulta sobre esta pregunta</a>
             </article>
         <?php endforeach; ?>
         <p class="vacio" id="revision-vacia" hidden>No hay preguntas en este filtro.</p>

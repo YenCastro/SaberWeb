@@ -7,6 +7,7 @@ require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../models/Prueba.php';
 require_once __DIR__ . '/../models/Simulacro.php';
 require_once __DIR__ . '/../models/Pregunta.php';
+require_once __DIR__ . '/../models/Notificacion.php';
 
 class AdminController {
     private $pruebaModel;
@@ -125,7 +126,8 @@ class AdminController {
             $this->redirigir('simulacros.php', $params);
         };
 
-        if (!$this->pruebaModel->obtener($idPrueba) || !in_array($estado, ['Prueba', 'Publicado'], true)) {
+        $prueba = $this->pruebaModel->obtener($idPrueba);
+        if (!$prueba || !in_array($estado, ['Prueba', 'Publicado'], true)) {
             $destino(['error' => 'solicitud_invalida']);
         }
 
@@ -138,6 +140,14 @@ class AdminController {
         }
 
         $ok = $this->pruebaModel->cambiarEstado($idPrueba, $estado);
+
+        // Al publicar por primera vez, se avisa a todos los estudiantes
+        if ($ok && $estado === 'Publicado' && $prueba['estado'] !== 'Publicado') {
+            (new Notificacion())->crearParaEstudiantes(
+                'Nuevo simulacro: ' . $prueba['titulo'],
+                'Ya está disponible «' . $prueba['titulo'] . '» (' . $prueba['tipo'] . ' ' . $prueba['anio'] . '). Entra a Simulacros para presentarlo.'
+            );
+        }
         $destino($ok
             ? ['mensaje' => ($estado === 'Publicado') ? 'publicada' : 'despublicada']
             : ['error' => 'no_se_pudo_guardar']);

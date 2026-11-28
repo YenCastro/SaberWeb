@@ -1,0 +1,15 @@
+/* public/assets/css/estudiante/notificaciones.css */
+@import url('../admin/admin.css');
+
+.est-main { flex: 1; width: 100%; max-width: 820px; margin: 0 auto; padding: 36px 20px 56px; }
+
+.notificacion { display: flex; gap: 14px; align-items: flex-start; background: var(--blanco); border: 1px solid var(--gris-borde); border-radius: 14px; padding: 16px 18px; margin-bottom: 12px; }
+.notificacion.nueva { border-color: var(--azul-principal); background: var(--azul-claro); }
+.notif-icono { width: 38px; height: 38px; border-radius: 50%; background: #F1F5F9; color: var(--gris-texto); display: grid; place-items: center; flex-shrink: 0; }
+.notificacion.nueva .notif-icono { background: var(--azul-principal); color: var(--blanco); }
+.notif-cuerpo { flex: 1; min-width: 0; }
+.notif-cab { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.notif-cab strong { color: var(--azul-oscuro); }
+.notif-cuerpo p { line-height: 1.55; white-space: pre-line; overflow-wrap: anywhere; }
+
+@media (max-width: 640px) { .notificacion { flex-wrap: wrap; } }

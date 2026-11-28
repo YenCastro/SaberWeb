@@ -121,3 +121,11 @@ textarea { resize: vertical; min-height: 90px; }
     .sesion-fila .sesion-unidad { display: none; }
     .sesion-editar { grid-template-columns: 1fr 90px; }
 }
+
+/* Etiquetas de reportes (estudiante y administrador) */
+.badge-error { background: var(--peligro-fondo); color: var(--peligro); }
+.badge-pregunta { background: #F3E8FF; color: #7E22CE; }
+.badge-sugerencia { background: var(--azul-claro); color: var(--azul-principal); }
+.badge-pendiente { background: var(--aviso-fondo); color: var(--aviso); }
+.badge-visto { background: var(--azul-claro); color: var(--azul-principal); }
+.badge-resuelto { background: var(--exito-fondo); color: var(--exito); }
